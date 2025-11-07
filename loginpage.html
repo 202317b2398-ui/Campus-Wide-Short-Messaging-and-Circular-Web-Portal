@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campus Portal Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body
+    class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-blue-900 to-indigo-900 text-white px-4"
+  >
+    <div
+      class="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-md bg-gray-800 bg-opacity-80 p-6 sm:p-8 rounded-2xl shadow-2xl backdrop-blur-lg"
+    >
+      <!-- Title -->
+      <h2 class="text-2xl sm:text-3xl font-bold mb-2 text-center text-blue-400">
+        Campus Portal
+      </h2>
+      <p class="text-gray-300 text-center mb-6 text-sm sm:text-base">
+        Unified Messaging & Circular System
+      </p>
+
+      <!-- Role Buttons -->
+      <div
+        id="roleButtons"
+        class="flex flex-wrap justify-center sm:justify-between gap-2 mb-6"
+      >
+        <button
+          onclick="setActive(this)"
+          class="role-btn flex-1 sm:flex-none px-4 py-2 text-sm sm:text-base rounded-lg bg-blue-600 border-2 border-blue-400 shadow-lg shadow-blue-500/30 hover:bg-blue-700 transition active"
+        >
+          🎓 Student
+        </button>
+        <button
+          onclick="setActive(this)"
+          class="role-btn flex-1 sm:flex-none px-4 py-2 text-sm sm:text-base rounded-lg bg-gray-700 border border-gray-600 hover:bg-blue-700 transition"
+        >
+          🔔 Staff
+        </button>
+        <button
+          onclick="setActive(this)"
+          class="role-btn flex-1 sm:flex-none px-4 py-2 text-sm sm:text-base rounded-lg bg-gray-700 border border-gray-600 hover:bg-blue-700 transition"
+        >
+          🛡️ Admin
+        </button>
+      </div>
+
+      <!-- Input Fields -->
+      <div class="space-y-4">
+        <input
+          type="email"
+          id="email"
+          placeholder="Email ID"
+          class="w-full p-3 sm:p-4 rounded-lg bg-gray-700 border border-gray-600 focus:border-blue-500 focus:outline-none placeholder-gray-400 text-sm sm:text-base"
+        />
+        <input
+          type="password"
+          id="password"
+          placeholder="Password"
+          class="w-full p-3 sm:p-4 rounded-lg bg-gray-700 border border-gray-600 focus:border-blue-500 focus:outline-none placeholder-gray-400 text-sm sm:text-base"
+        />
+      </div>
+
+      <!-- Forgot Password -->
+      <button
+        onclick="forgotPassword()"
+        class="w-full mt-4 text-sm sm:text-base text-blue-400 hover:text-blue-300 underline transition"
+      >
+        Forgot Password?
+      </button>
+
+      <!-- Sign In Button -->
+      <button
+        id="signinBtn"
+        onclick="validateLogin()"
+        class="w-full mt-4 bg-blue-600 hover:bg-blue-700 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg transition duration-300 shadow-lg shadow-blue-500/40"
+      >
+        Sign In
+      </button>
+
+      <!-- Message Box -->
+      <p
+        id="messageBox"
+        class="hidden mt-4 text-sm sm:text-base text-center bg-blue-900 bg-opacity-60 p-3 sm:p-4 rounded-lg border border-blue-600"
+      ></p>
+
+      <!-- Footer -->
+      <p class="text-xs sm:text-sm text-gray-400 text-center mt-6">
+        © 2025 Campus Portal | All Rights Reserved
+      </p>
+    </div>
+
+    <script>
+      let currentRole = "Student";
+
+      function setActive(btn) {
+        document.querySelectorAll(".role-btn").forEach((b) => {
+          b.classList.remove(
+            "bg-blue-600",
+            "border-2",
+            "border-blue-400",
+            "shadow-lg",
+            "shadow-blue-500/30"
+          );
+          b.classList.add("bg-gray-700", "border", "border-gray-600");
+        });
+
+        btn.classList.remove("bg-gray-700", "border", "border-gray-600");
+        btn.classList.add(
+          "bg-blue-600",
+          "border-2",
+          "border-blue-400",
+          "shadow-lg",
+          "shadow-blue-500/30"
+        );
+
+        currentRole = btn.textContent.trim().replace(/[^a-zA-Z]/g, "");
+      }
+
+      function showMessage(message, color = "blue") {
+        const messageBox = document.getElementById("messageBox");
+        messageBox.textContent = message;
+        messageBox.classList.remove("hidden", "border-blue-600", "border-red-600", "border-green-600");
+        messageBox.classList.add(`border-${color}-600`);
+        messageBox.classList.add("animate-fadeIn");
+      }
+
+      function forgotPassword() {
+        if (currentRole === "Student" || currentRole === "Staff") {
+          showMessage(
+            "Please reach out to Admin. Your password reset request has been sent to the Admin.",
+            "blue"
+          );
+        } else if (currentRole === "Admin") {
+          showMessage(
+            "Admin can change the password directly through the Admin settings.",
+            "blue"
+          );
+        }
+      }
+
+      // 🔐 Validation Function
+      function validateLogin() {
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        // Basic empty field validation
+        if (!email || !password) {
+          showMessage("Please fill in all fields.", "red");
+          return;
+        }
+
+        // Email format validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          showMessage("Please enter a valid email address.", "red");
+          return;
+        }
+
+        // Password strength check (at least 8 chars, 1 upper, 1 lower, 1 number, 1 special)
+        const passRegex =
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (!passRegex.test(password)) {
+          showMessage(
+            "Password must be at least 8 characters and include uppercase, lowercase, number, and special character.",
+            "red"
+          );
+          return;
+        }
+
+        // Role-based fake authentication (for demo)
+        if (
+          (currentRole === "Admin" && email === "admin@campus.com" && password === "Admin@123") ||
+          (currentRole === "Staff" && email === "staff@campus.com" && password === "Staff@123") ||
+          (currentRole === "Student" && email === "student@campus.com" && password === "Student@123")
+        ) {
+          showMessage(`Welcome back, ${currentRole}! Redirecting...`, "green");
+          setTimeout(() => {
+            window.location.href = `${currentRole.toLowerCase()}_dashboard.html`;
+          }, 1500);
+        } else {
+          showMessage("Invalid credentials or role mismatch!", "red");
+        }
+      }
+    </script>
+
+    <style>
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(5px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fadeIn {
+        animation: fadeIn 0.5s ease forwards;
+      }
+
+      /* Shake animation for invalid input */
+      @keyframes shake {
+        0%, 100% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-5px);
+        }
+        75% {
+          transform: translateX(5px);
+        }
+      }
+      .shake {
+        animation: shake 0.3s;
+      }
+    </style>
+  </body>
+</html>

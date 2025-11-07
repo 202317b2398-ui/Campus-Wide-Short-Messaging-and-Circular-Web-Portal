@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Dashboard | Campus Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-blue-900 to-indigo-900 text-white min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-gray-800 bg-opacity-80 shadow-lg p-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold text-blue-400">🎓 Campus Portal</h1>
+    <div class="flex items-center gap-4">
+      <span class="text-sm bg-blue-700 px-3 py-1 rounded-full">Student</span>
+      <button onclick="logout()" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded-lg text-sm">Logout</button>
+    </div>
+  </header>
+
+  <!-- Main Layout -->
+  <main class="flex flex-1">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gray-800 bg-opacity-70 p-4 hidden sm:block">
+      <nav class="space-y-3">
+        <a href="#" class="block px-3 py-2 rounded-lg bg-blue-700">📨 Messages</a>
+        <a href="#" class="block px-3 py-2 hover:bg-gray-700 rounded-lg">🔍 Archive</a>
+        <a href="#" class="block px-3 py-2 hover:bg-gray-700 rounded-lg">🔔 Notifications</a>
+      </nav>
+    </aside>
+
+    <!-- Content -->
+    <section class="flex-1 p-6 overflow-y-auto">
+      <h2 class="text-2xl font-semibold mb-4">Message Feed</h2>
+
+      <div id="messageFeed" class="space-y-4">
+        <!-- Sample Message -->
+        <div class="bg-gray-800 bg-opacity-60 p-4 rounded-xl border border-gray-700">
+          <h3 class="text-lg font-semibold text-blue-300">Circular: Mid-Semester Exams</h3>
+          <p class="text-gray-300 mt-2">Mid-semester exams will begin on November 20th. Check your timetable in the student portal.</p>
+          <div class="flex justify-between items-center mt-3">
+            <span class="text-sm text-gray-400">Sent by: Academic Office</span>
+            <button class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded-lg text-sm">Acknowledge</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="text-center text-gray-400 py-4 text-sm bg-gray-900 bg-opacity-70">
+    © 2025 Campus Portal | Student Dashboard
+  </footer>
+
+  <script>
+    function logout() {
+      window.location.href = "loginpage.html";
+    }
+  </script>
+</body>
+</html>
