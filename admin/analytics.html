@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics | Campus Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-blue-900 to-indigo-900 text-white min-h-screen flex flex-col">
+
+<header class="bg-gray-800 bg-opacity-80 shadow-lg p-4 flex justify-between items-center">
+  <h1 class="text-xl font-bold text-blue-400">📈 System Analytics</h1>
+  <button onclick="window.location.href='../admin_Dashboard.html'" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded-lg text-sm">Back</button>
+</header>
+
+<main class="flex-1 p-6">
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="bg-gray-800 bg-opacity-70 p-4 rounded-xl border border-gray-700">
+      <h3 class="text-lg text-blue-300 font-semibold">Total Messages Sent</h3>
+      <p class="text-2xl font-bold mt-2">1,240</p>
+    </div>
+    <div class="bg-gray-800 bg-opacity-70 p-4 rounded-xl border border-gray-700">
+      <h3 class="text-lg text-blue-300 font-semibold">Average Read Rate</h3>
+      <p class="text-2xl font-bold mt-2">92%</p>
+    </div>
+    <div class="bg-gray-800 bg-opacity-70 p-4 rounded-xl border border-gray-700">
+      <h3 class="text-lg text-blue-300 font-semibold">Active Users</h3>
+      <p class="text-2xl font-bold mt-2">523</p>
+    </div>
+  </div>
+
+  <div class="mt-8 bg-gray-800 bg-opacity-70 p-6 rounded-xl border border-gray-700">
+    <h3 class="text-xl mb-4 text-blue-300">Recent Activity</h3>
+    <ul class="text-gray-300 space-y-2">
+      <li>🟢 Server Health: Normal</li>
+      <li>🟢 Database Connection: Stable</li>
+      <li>🟢 API Response Time: 180ms</li>
+    </ul>
+  </div>

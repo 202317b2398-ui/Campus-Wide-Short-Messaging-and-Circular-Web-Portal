@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Message | Campus Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-blue-900 to-indigo-900 text-white min-h-screen flex flex-col">
+
+<header class="bg-gray-800 bg-opacity-80 shadow-lg p-4 flex justify-between items-center">
+  <h1 class="text-xl font-bold text-blue-400">🛡️ Create Message</h1>
+  <button onclick="window.location.href='../admin_Dashboard.html'" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded-lg text-sm">Back</button>
+</header>
+
+<main class="flex-1 p-6">
+  <form class="space-y-4 max-w-2xl mx-auto bg-gray-800 bg-opacity-70 p-6 rounded-xl border border-gray-700">
+    <input type="text" placeholder="Message Title" class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:border-blue-500">
+    <textarea placeholder="Message Content" class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 h-32"></textarea>
+
+    <div class="flex gap-4">
+      <select class="flex-1 p-3 rounded-lg bg-gray-700 border border-gray-600">
+        <option>Priority: Low</option>
+        <option>Priority: Medium</option>
+        <option>Priority: High</option>
+      </select>
+
+      <select class="flex-1 p-3 rounded-lg bg-gray-700 border border-gray-600">
+        <option>Send To: Students</option>
+        <option>Send To: Staff</option>
+        <option>Send To: Custom Group</option>
+      </select>
+    </div>
+
+    <input type="file" class="w-full text-sm text-gray-300" />
+    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-lg font-semibold">Send Message</button>
+  </form>
+</main>
+
+<footer class="text-center text-gray-400 py-4 text-sm bg-gray-900 bg-opacity-70">© 2025 Campus Portal | Admin</footer>
+</body>
+</html>
